@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fördernest · Förderung und Finanzberatung für Familien</title>
+<meta name="description" content="Fördernest begleitet Familien bei Förderungen, Elterngeld, Absicherung und Vermögensaufbau. Dein kostenloses Erstgespräch, deutschlandweit und online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#33454e; --ink-soft:#5d6f72;
+  --green:#8ea072; --green-deep:#6d8151;
+  --gold:#dda53c; --gold-deep:#c1841c;
+  --tan:#c8a96d; --tan-soft:#e6d6b6;
+  --cream:#faf6ee; --cream2:#f3ecdd; --paper:#ffffff;
+  --line:rgba(51,69,78,.12);
+  --shadow:0 18px 50px -24px rgba(51,69,78,.45);
+  --maxw:1160px;
+  --r:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:"Nunito Sans",system-ui,sans-serif; font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Fredoka",system-ui,sans-serif; font-weight:600; line-height:1.08; margin:0; letter-spacing:-.01em;}
+p{margin:0 0 1em}
+a{color:inherit}
+img{max-width:100%; display:block}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+.sect{padding:96px 0}
+.eyebrow{
+  font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--green-deep); margin:0 0 16px;
+}
+.lead{font-size:19px; color:var(--ink-soft); max-width:56ch}
+
+/* buttons */
+.btn{display:inline-flex; align-items:center; gap:10px; font-family:"Fredoka",sans-serif; font-weight:500;
+  font-size:16px; padding:14px 24px; border-radius:100px; border:0; cursor:pointer; text-decoration:none;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;}
+.btn-gold{background:var(--gold); color:#3a2c08; box-shadow:0 10px 24px -10px rgba(221,165,60,.9)}
+.btn-gold:hover{transform:translateY(-2px); background:var(--gold-deep); color:#fff}
+.btn-ghost{background:transparent; color:var(--ink); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--green); color:var(--green-deep); transform:translateY(-2px)}
+.btn-green{background:var(--green-deep); color:#fff}
+.btn-green:hover{transform:translateY(-2px); background:#5c6e44}
+
+/* header */
+.hdr{position:sticky; top:0; z-index:60; background:rgba(250,246,238,.82);
+  backdrop-filter:blur(10px); border-bottom:1px solid transparent; transition:border-color .3s, box-shadow .3s}
+.hdr.scrolled{border-color:var(--line); box-shadow:0 10px 30px -26px rgba(51,69,78,.6)}
+.hdr .wrap{display:flex; align-items:center; justify-content:space-between; height:108px; padding-top:8px; padding-bottom:8px}
+.brand img{height:84px; width:auto; display:block}
+.nav{display:flex; align-items:center; gap:34px}
+.nav a.link{font-weight:700; font-size:15.5px; text-decoration:none; color:var(--ink); position:relative}
+.nav a.link::after{content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0; background:var(--gold); transition:width .22s ease}
+.nav a.link:hover::after{width:100%}
+.burger{display:none; background:none; border:0; cursor:pointer; padding:8px}
+.burger span{display:block; width:24px; height:2px; background:var(--ink); margin:5px 0; transition:.25s}
+
+/* hero */
+.hero{position:relative; overflow:hidden}
+.hero .wrap{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; padding-top:72px; padding-bottom:40px}
+.hero-copy h1{font-size:clamp(38px,5vw,60px); color:var(--ink)}
+.hero-copy h1 .accent{color:var(--green-deep)}
+.hero-copy .lead{margin:22px 0 30px}
+.hero-cta{display:flex; align-items:center; gap:20px; flex-wrap:wrap}
+.call{display:inline-flex; align-items:center; gap:10px; font-weight:700; text-decoration:none; color:var(--ink)}
+.call small{display:block; font-weight:600; color:var(--ink-soft); font-size:13px; line-height:1.2}
+.call .ic{width:42px;height:42px;border-radius:50%;background:var(--cream2);display:grid;place-items:center;flex:none}
+.hero-media{position:relative}
+.hero-media .photo{position:relative; z-index:2; border-radius:52% 52% 46% 46%/44% 44% 52% 52%;
+  overflow:hidden; box-shadow:var(--shadow); border:6px solid #fff; aspect-ratio:4/3.2; object-fit:cover; width:100%; height:100%}
+.hero-media .photo img{width:100%; height:100%; object-fit:cover}
+.nest-strands{position:absolute; z-index:1; left:-6%; right:-6%; bottom:-9%; width:112%; height:auto; opacity:.9}
+.blob{position:absolute; z-index:0; width:340px; height:340px; right:-90px; top:-70px;
+  background:radial-gradient(circle at 40% 40%, rgba(142,160,114,.35), rgba(142,160,114,0) 70%); filter:blur(4px)}
+.usp{background:var(--cream); padding:6px 0 42px; position:relative; z-index:5}
+.usp .wrap{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+.usp .card{background:#fff; border:1px solid var(--line); border-radius:20px; padding:26px 26px;
+  display:flex; gap:16px; align-items:flex-start; box-shadow:0 16px 44px -32px rgba(51,69,78,.7)}
+.usp .badge{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;flex:none;
+  background:var(--cream2); color:var(--green-deep)}
+.usp .card:nth-child(2) .badge{color:var(--gold-deep)}
+.usp .card:nth-child(3) .badge{color:var(--tan)}
+.usp b{font-family:"Fredoka",sans-serif; font-weight:500; font-size:17.5px; display:block; margin-bottom:5px; color:var(--ink); line-height:1.15}
+.usp p{margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.5}
+
+/* empathy */
+.empathy{background:linear-gradient(180deg,var(--cream) 0%, #fff 100%)}
+.empathy .wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center}
+.empathy h2{font-size:clamp(28px,3.4vw,40px); max-width:14ch}
+.quote{margin-top:26px; padding:22px 26px; background:var(--cream2); border-radius:18px;
+  border-left:4px solid var(--gold); font-family:"Fredoka",sans-serif; font-size:20px; color:var(--ink)}
+
+/* leistungen */
+.leistungen{background:#fff}
+.head-row{display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin-bottom:52px; flex-wrap:wrap}
+.head-row h2{font-size:clamp(30px,3.6vw,44px); max-width:16ch}
+.pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:26px}
+.pillar{background:var(--cream); border-radius:var(--r); padding:34px 30px 30px; position:relative;
+  border:1px solid var(--line); transition:transform .2s ease, box-shadow .2s ease}
+.pillar:hover{transform:translateY(-4px); box-shadow:var(--shadow)}
+.pillar::before{content:""; position:absolute; top:0; left:30px; right:30px; height:3px; border-radius:3px; background:var(--tan)}
+.pillar:nth-child(2)::before{background:var(--green)}
+.pillar:nth-child(3)::before{background:var(--gold)}
+.pillar .motif{width:52px; height:52px; margin-bottom:18px}
+.pillar h3{font-size:23px; margin-bottom:10px}
+.pillar p{font-size:15.5px; color:var(--ink-soft); margin-bottom:18px}
+.morelink{font-family:"Fredoka",sans-serif; font-weight:500; text-decoration:none; color:var(--green-deep);
+  display:inline-flex; align-items:center; gap:7px}
+.morelink svg{transition:transform .18s}
+.morelink:hover svg{transform:translateX(4px)}
+
+/* process */
+.process{background:var(--ink); color:#eef1ec; position:relative}
+.process .eyebrow{color:var(--tan-soft)}
+.process h2{font-size:clamp(28px,3.4vw,40px); color:#fff; margin-bottom:54px; max-width:18ch}
+.steps{display:grid; grid-template-columns:repeat(5,1fr); gap:22px; position:relative}
+.steps::before{content:""; position:absolute; top:22px; left:6%; right:6%; height:2px;
+  background:repeating-linear-gradient(90deg,var(--tan) 0 8px, transparent 8px 16px); opacity:.6}
+.step{position:relative}
+.step .num{width:46px; height:46px; border-radius:50%; background:var(--gold); color:#3a2c08;
+  font-family:"Fredoka",sans-serif; font-weight:600; display:grid; place-items:center; font-size:18px; position:relative; z-index:2}
+.step h3{font-size:17.5px; color:#fff; margin:18px 0 8px}
+.step p{font-size:14px; color:#c4ccc4; margin:0}
+
+/* about */
+.about{background:var(--cream)}
+.about .wrap{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center}
+.about-media{position:relative}
+.about-media img{border-radius:26px; box-shadow:var(--shadow); border:6px solid #fff; aspect-ratio:3/3.4; object-fit:cover; width:100%}
+.about h2{font-size:clamp(28px,3.4vw,40px); max-width:16ch; margin-bottom:20px}
+.stats{display:flex; gap:14px; flex-wrap:wrap; margin-top:28px}
+.stat{background:#fff; border:1px solid var(--line); border-radius:16px; padding:16px 20px; flex:1; min-width:130px}
+.stat b{font-family:"Fredoka",sans-serif; font-size:22px; display:block; color:var(--green-deep)}
+.stat span{font-size:13.5px; color:var(--ink-soft); font-weight:700}
+
+/* partners */
+.partners{background:#fff; padding:70px 0; text-align:center; overflow:hidden}
+.partners .eyebrow{color:var(--green-deep)}
+.partners .sub{color:var(--ink-soft); max-width:48ch; margin:0 auto 40px}
+.marquee{position:relative; overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex; gap:64px; width:max-content; align-items:center; animation:scroll 42s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track img{height:38px; width:auto; object-fit:contain; filter:grayscale(1); opacity:.55;
+  transition:filter .25s, opacity .25s}
+.marquee-track img:hover{filter:grayscale(0); opacity:1}
+@keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+/* faq */
+.faq{background:var(--cream2)}
+.faq .wrap{max-width:820px}
+.faq h2{font-size:clamp(28px,3.4vw,40px); text-align:center; margin-bottom:44px}
+.q{background:#fff; border:1px solid var(--line); border-radius:16px; margin-bottom:14px; overflow:hidden}
+.q button{width:100%; text-align:left; background:none; border:0; cursor:pointer; padding:22px 24px;
+  font-family:"Fredoka",sans-serif; font-weight:500; font-size:18px; color:var(--ink);
+  display:flex; justify-content:space-between; align-items:center; gap:16px}
+.q .chev{flex:none; transition:transform .25s; color:var(--green-deep)}
+.q.open .chev{transform:rotate(180deg)}
+.q .ans{max-height:0; overflow:hidden; transition:max-height .3s ease}
+.q .ans p{padding:0 24px 22px; margin:0; color:var(--ink-soft); font-size:16px}
+
+/* insta */
+.insta{background:#fff}
+.insta .card{background:linear-gradient(120deg,var(--green-deep),#7d9159); color:#fff; border-radius:28px;
+  padding:44px 48px; display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap}
+.insta h2{color:#fff; font-size:28px; margin-bottom:8px}
+.insta p{color:rgba(255,255,255,.9); margin:0; max-width:44ch}
+.insta .btn-gold{background:#fff; color:var(--green-deep)}
+.insta .btn-gold:hover{background:var(--gold); color:#3a2c08}
+
+/* contact */
+.contact{background:var(--cream)}
+.contact .wrap{display:grid; grid-template-columns:.85fr 1.15fr; gap:56px}
+.contact h2{font-size:clamp(30px,3.6vw,44px); margin-bottom:16px}
+.reach{list-style:none; padding:0; margin:26px 0 0}
+.reach li{display:flex; gap:14px; align-items:flex-start; margin-bottom:18px}
+.reach .ic{width:42px;height:42px;border-radius:12px;background:#fff;border:1px solid var(--line);
+  display:grid;place-items:center;flex:none;color:var(--green-deep)}
+.reach b{display:block; font-family:"Fredoka",sans-serif; font-weight:500}
+.reach a{text-decoration:none; color:var(--ink)}
+.reach small{color:var(--ink-soft)}
+.map{margin-top:24px; height:150px; border-radius:16px; border:1px dashed var(--tan);
+  background:var(--cream2); display:grid; place-items:center; text-align:center; color:var(--ink-soft); font-size:14px; padding:14px}
+.form{background:#fff; border:1px solid var(--line); border-radius:24px; padding:34px; box-shadow:var(--shadow)}
+.form .row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.field{margin-bottom:16px}
+.field label{display:block; font-size:13.5px; font-weight:700; color:var(--ink); margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%; padding:13px 15px; border:1px solid var(--line);
+  border-radius:12px; font:inherit; font-size:15.5px; background:var(--cream); color:var(--ink)}
+.field textarea{resize:vertical; min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--green); outline-offset:1px; background:#fff}
+.consent{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--ink-soft); margin:4px 0 20px}
+.consent input{margin-top:3px}
+.form .ok{display:none; background:#eef3e6; border:1px solid var(--green); color:var(--green-deep);
+  padding:14px 18px; border-radius:12px; font-weight:700; margin-bottom:16px}
+
+/* footer */
+.foot{background:var(--ink); color:#c9d1cb; padding:64px 0 30px}
+.foot .top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:36px}
+.foot .word{font-family:"Fredoka",sans-serif; font-weight:600; font-size:26px; color:#fff}
+.foot .word span{color:var(--green)}
+.foot .desc{letter-spacing:.14em; text-transform:uppercase; font-size:11px; color:var(--tan-soft); margin:6px 0 16px}
+.foot .slogan{font-family:"Fredoka",sans-serif; font-size:18px; color:#eef1ec; max-width:30ch}
+.foot h4{font-family:"Fredoka",sans-serif; font-weight:500; color:#fff; font-size:15px; margin:0 0 14px; letter-spacing:.02em}
+.foot ul{list-style:none; padding:0; margin:0}
+.foot li{margin-bottom:9px}
+.foot a{color:#c9d1cb; text-decoration:none; font-size:14.5px}
+.foot a:hover{color:#fff}
+.iglink{display:inline-flex; align-items:center; gap:9px; margin-top:18px; color:#fff; text-decoration:none; font-weight:700; font-size:14.5px}
+.iglink .ic{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.1);display:grid;place-items:center}
+.foot .bottom{border-top:1px solid rgba(255,255,255,.12); margin-top:44px; padding-top:22px;
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:#9aa69f}
+
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1; transform:none}
+
+@media (max-width:920px){
+  .hero .wrap,.empathy .wrap,.about .wrap,.contact .wrap{grid-template-columns:1fr; gap:40px}
+  .hero-media{order:-1; max-width:460px}
+  .pillars{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr; gap:8px}
+  .steps::before{display:none}
+  .step{display:grid; grid-template-columns:46px 1fr; gap:16px; align-items:start; padding:8px 0}
+  .step h3{margin-top:0}
+  .foot .top{grid-template-columns:1fr 1fr}
+  .form .row{grid-template-columns:1fr}
+}
+@media (max-width:680px){
+  .sect{padding:70px 0}
+  .hdr .wrap{height:82px}
+  .brand img{height:58px}
+  .nav{position:fixed; inset:82px 0 auto 0; background:var(--cream); flex-direction:column; gap:0;
+    padding:14px 24px 26px; box-shadow:var(--shadow); transform:translateY(-140%); transition:transform .3s; align-items:stretch}
+  .nav.open{transform:none}
+  .nav a.link{padding:14px 0; border-bottom:1px solid var(--line)}
+  .nav .btn{margin-top:14px; justify-content:center}
+  .burger{display:block}
+  .foot .top{grid-template-columns:1fr}
+  .insta .card{padding:32px 26px}
+}
+@media (prefers-reduced-motion:reduce){
+  .marquee-track{animation:none} .reveal{transition:none; opacity:1; transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Fördernest Startseite"><img src="assets/logo.png" alt="Fördernest"></a>
+    <nav class="nav" id="nav">
+      <a class="link" href="#ueber">Über mich</a>
+      <a class="link" href="#leistungen">Leistungen</a>
+      <a class="link" href="#kontakt">Kontakt</a>
+      <a class="btn btn-gold" href="#kontakt">Kostenloses Erstgespräch</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="start">
+  <div class="wrap">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">Förderungen &middot; Vorsorge &middot; Vermögen</p>
+      <h1>Ein sicheres <span class="accent">Nest</span> für deine Familie.</h1>
+      <p class="lead">Ich helfe dir, alle Förderungen mitzunehmen, deine Familie klug abzusichern und Schritt für Schritt Vermögen aufzubauen. Verständlich, persönlich und ohne Fachchinesisch.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#kontakt">Kostenloses Erstgespräch</a>
+        <a class="call" href="tel:+4915567450097">
+          <span class="ic" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#33454e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
+          </span>
+          <span>0155 6745 0097<small>Erstgespräch in 48 Stunden</small></span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-media reveal">
+      <span class="blob" aria-hidden="true"></span>
+      <div class="photo"><img src="assets/hero.jpg" alt="Eltern lachen gemeinsam mit ihrem Kind im Freien" fetchpriority="high"></div>
+      <svg class="nest-strands" viewBox="0 0 600 150" fill="none" aria-hidden="true">
+        <path d="M20 40 C 150 130, 450 130, 580 40" stroke="#c8a96d" stroke-width="4" stroke-linecap="round"/>
+        <path d="M10 62 C 160 150, 440 150, 590 62" stroke="#e6d6b6" stroke-width="4" stroke-linecap="round"/>
+        <path d="M45 30 C 180 108, 420 108, 555 30" stroke="#dda53c" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+      </svg>
+    </div>
+  </div>
+  <div class="usp">
+    <div class="wrap">
+      <div class="card reveal">
+        <span class="badge" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.3-9C1 8.6 2.7 5.5 6 5.5c2 0 3.2 1.2 4 2.4.8-1.2 2-2.4 4-2.4 3.3 0 5 3.1 3.3 6.5C19 16.5 12 21 12 21Z"/></svg></span>
+        <div><b>Beratung von Familie zu Familie</b><p>Ich bin selbst Papa und kenne eure Fragen aus dem echten Leben.</p></div>
+      </div>
+      <div class="card reveal">
+        <span class="badge" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7"/><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M12 7V21"/><path d="M12 7S10.5 3.5 8 3.5 5 6 7 7h5Zm0 0s1.5-3.5 4-3.5S19 6 17 7h-5Z"/></svg></span>
+        <div><b>Kein Geld verschenken</b><p>Ich hole für euch heraus, was euch an Förderungen und Zuschüssen zusteht.</p></div>
+      </div>
+      <div class="card reveal">
+        <span class="badge" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/><path d="M9 20l.5-4M15 20l-.5-4"/></svg></span>
+        <div><b>Bequem von zuhause</b><p>Online und deutschlandweit, mit kostenlosem Erstgespräch in 48 Stunden.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMPATHY -->
+<section class="sect empathy">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Warum Fördernest</p>
+      <h2>Mit einem Kind kommen tausend Fragen.</h2>
+    </div>
+    <div class="reveal">
+      <p>Welche Anträge stehen an, wie wird das Elterngeld berechnet, welche Zuschüsse stehen euch zu. Auf einmal soll man bei all dem den Überblick behalten, während der Alltag mit Kind ohnehin schon voll ist.</p>
+      <p>Ich kenne dieses Gefühl aus unserer eigenen Familie. Genau deshalb nehme ich mir Zeit, erkläre alles in Ruhe und finde gemeinsam mit euch Lösungen, die wirklich zu eurem Leben passen. Ohne Verkaufsdruck, dafür mit Blick auf das, was langfristig zählt.</p>
+      <p class="quote">Uns wurde klar: Vielen Familien geht es genauso wie uns.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEISTUNGEN -->
+<section class="sect leistungen" id="leistungen">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <div>
+        <p class="eyebrow">Was ich für euch tue</p>
+        <h2>Womit ich deine Familie unterstütze.</h2>
+      </div>
+      <p class="lead" style="margin:0">Drei Bereiche, die zusammenspielen, damit ihr heute mehr herausholt und für morgen abgesichert seid.</p>
+    </div>
+    <div class="pillars">
+      <article class="pillar reveal">
+        <svg class="motif" viewBox="0 0 48 48" fill="none" stroke="#c1841c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c6 6 6 10 0 14-6-4-6-8 0-14Z"/><path d="M24 20v22"/><path d="M24 30c-4-5-9-5-14-4 1 6 6 9 14 8Z" stroke="#8ea072"/><path d="M24 26c3-4 8-4 12-3-1 5-5 7-12 6Z" stroke="#8ea072"/></svg>
+        <h3>Förderkonzept</h3>
+        <p>Ich prüfe alle staatlichen Leistungen und Zuschüsse, plane deine Elternzeit clever und unterstütze dich bei den Anträgen. So bleibt kein Geld liegen, das eurer Familie zusteht.</p>
+        <a class="morelink" href="#kontakt">Mehr dazu <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="pillar reveal">
+        <svg class="motif" viewBox="0 0 48 48" fill="none" stroke="#6d8151" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l14 5v9c0 9-6 15-14 18-8-3-14-9-14-18v-9l14-5Z"/><path d="M17 24l5 5 9-10"/></svg>
+        <h3>Familienvorsorge und Absicherung</h3>
+        <p>Wir schauen gemeinsam auf euren Versicherungsschutz, sortieren aus, was doppelt oder überflüssig ist, vergleichen Krankenkassenleistungen und bauen eine Vorsorge auf, die zu eurer Familie passt.</p>
+        <a class="morelink" href="#kontakt">Mehr dazu <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="pillar reveal">
+        <svg class="motif" viewBox="0 0 48 48" fill="none" stroke="#c1841c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32"/><path d="M14 40V28M24 40V20M34 40V24"/><path d="M12 16c4 0 6-3 6-7 4 1 6 4 5 8" stroke="#8ea072"/></svg>
+        <h3>Vermögensaufbau</h3>
+        <p>Vom Juniordepot für dein Kind bis zur langfristigen Strategie: Wir nutzen Freibeträge und geförderte Modelle, damit aus kleinen Schritten mit der Zeit ein solides Polster für eure Zukunft wird.</p>
+        <a class="morelink" href="#kontakt">Mehr dazu <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sect process">
+  <div class="wrap">
+    <p class="eyebrow reveal">In fünf Schritten</p>
+    <h2 class="reveal">So läuft unsere Zusammenarbeit.</h2>
+    <div class="steps">
+      <div class="step reveal"><div class="num">1</div><h3>Erstkontakt am Telefon</h3><p>In einem kurzen Telefonat lernen wir uns kennen und besprechen eure Situation und Wünsche.</p></div>
+      <div class="step reveal"><div class="num">2</div><h3>Infomail mit Unterlagen</h3><p>Du bekommst alle Infos und die Unterlagen für den Termin bequem per Mail.</p></div>
+      <div class="step reveal"><div class="num">3</div><h3>Online-Beratungstermin</h3><p>Wir prüfen Förderungen und Absicherung und entwickeln ein Konzept, das zu euch passt.</p></div>
+      <div class="step reveal"><div class="num">4</div><h3>Umsetzung</h3><p>Wenn ihr euch entscheidet, kümmere ich mich um die Umsetzung und begleite euch dabei.</p></div>
+      <div class="step reveal"><div class="num">5</div><h3>Jährlicher Check-up</h3><p>Einmal im Jahr schauen wir kostenlos gemeinsam drauf und passen alles an, wenn sich etwas ändert.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sect about" id="ueber">
+  <div class="wrap">
+    <div class="about-media reveal">
+      <img src="assets/portrait.jpg" alt="Jakob Weinzierl mit seiner Familie im Garten">
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Dein Berater</p>
+      <h2>Ich bin Jakob, und ich weiß, wovon ich rede.</h2>
+      <p>Familienberater und selbst Papa. Als unser Sohn zur Welt kam, standen meine Frau und ich vor genau den Fragen, bei denen ich heute anderen Familien helfe. Was ich euch verspreche: ehrliche Beratung, klare Worte und immer das Ziel, dass ihr euch gut aufgehoben fühlt.</p>
+      <div class="stats">
+        <div class="stat"><b>7 Jahre</b><span>Erfahrung mit Familien</span></div>
+        <div class="stat"><b>Geprüft</b><span>zugelassener Berater</span></div>
+        <div class="stat"><b>Online</b><span>deutschlandweit für dich da</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners">
+  <div class="wrap">
+    <p class="eyebrow reveal">Starke Partner an eurer Seite</p>
+    <p class="sub reveal">Für jede Familie die passende Lösung, aus einer großen Auswahl geprüfter Gesellschaften.</p>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track" id="track">
+      <img src="assets/partners/allianz.webp" alt="Allianz">
+      <img src="assets/partners/generali.webp" alt="Generali">
+      <img src="assets/partners/generali-investments.jpg" alt="Generali Investments">
+      <img src="assets/partners/deutsche-bank.webp" alt="Deutsche Bank">
+      <img src="assets/partners/dws.svg" alt="DWS">
+      <img src="assets/partners/santander.png" alt="Santander">
+      <img src="assets/partners/advocard.svg" alt="Advocard">
+      <img src="assets/partners/badenia.svg" alt="Badenia">
+      <img src="assets/partners/bkk-linde.png" alt="BKK Linde">
+      <img src="assets/partners/fondsdepot-bank.svg" alt="Fondsdepot Bank">
+      <img src="assets/partners/deutsche-verrechnungsstelle.svg" alt="Deutsche Verrechnungsstelle">
+      <img src="assets/partners/planethome.png" alt="PlanetHome">
+      <img src="assets/partners/meritum.png" alt="Meritum Capital">
+      <img src="assets/partners/ge-ag.svg" alt="Partnergesellschaft">
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sect faq" id="faq">
+  <div class="wrap">
+    <h2 class="reveal">Häufige Fragen</h2>
+    <div class="reveal" id="faqlist">
+      <div class="q"><button aria-expanded="false"><span>Was kostet ein Erstgespräch?</span><span class="chev" aria-hidden="true">&#9662;</span></button><div class="ans"><p>Dein Erstgespräch ist immer kostenlos und unverbindlich. Wir schauen gemeinsam, wo ihr steht und wie ich euch helfen kann. Alles Weitere besprechen wir ganz in Ruhe.</p></div></div>
+      <div class="q"><button aria-expanded="false"><span>Für wen ist die Beratung gedacht?</span><span class="chev" aria-hidden="true">&#9662;</span></button><div class="ans"><p>Für Familien, werdende Eltern und alle, die für ihre Familie das Beste herausholen möchten. Egal ob es um Förderungen, Absicherung oder den Aufbau von Vermögen geht.</p></div></div>
+      <div class="q"><button aria-expanded="false"><span>Geht die Beratung auch online?</span><span class="chev" aria-hidden="true">&#9662;</span></button><div class="ans"><p>Ja. Ich berate dich deutschlandweit bequem per Video. Wer lieber persönlich vorbeikommt, ist in meinem Büro in München herzlich willkommen.</p></div></div>
+      <div class="q"><button aria-expanded="false"><span>Welche Förderungen kann ich bekommen?</span><span class="chev" aria-hidden="true">&#9662;</span></button><div class="ans"><p>Das hängt von eurer Situation ab. Häufig geht es um Elterngeld, Kindergeld und verschiedene Zuschüsse. Im Gespräch prüfe ich, was für euch konkret drin ist.</p></div></div>
+      <div class="q"><button aria-expanded="false"><span>Wie schnell bekomme ich einen Termin?</span><span class="chev" aria-hidden="true">&#9662;</span></button><div class="ans"><p>In der Regel findet dein Erstgespräch innerhalb von 48 Stunden statt, von Montag bis Freitag.</p></div></div>
+      <div class="q"><button aria-expanded="false"><span>Arbeitest du mit festen Partnern?</span><span class="chev" aria-hidden="true">&#9662;</span></button><div class="ans"><p>Ich arbeite mit vielen starken Partnergesellschaften zusammen und suche daraus die Lösung, die wirklich zu eurer Familie passt.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="sect insta">
+  <div class="wrap">
+    <div class="card reveal">
+      <div>
+        <p class="eyebrow" style="color:rgba(255,255,255,.85)">Instagram</p>
+        <h2>Schau bei uns vorbei.</h2>
+        <p>Tipps zu Förderungen, kleine Einblicke und Alltagshelfer für Familien. Folge Fördernest und verpasse nichts.</p>
+      </div>
+      <a class="btn btn-gold" href="#" data-placeholder="instagram">Zu Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sect contact" id="kontakt">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Kontakt</p>
+      <h2>Lass uns reden.</h2>
+      <p class="lead">Erzähl mir kurz, worum es geht. Dein Erstgespräch ist kostenlos und unverbindlich.</p>
+      <ul class="reach">
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg></span><span><b><a href="tel:+4915567450097">0155 6745 0097</a></b><small>Ruf einfach an</small></span></li>
+        <li><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.5 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3.1.3.1.6-.1 1.2Z"/></svg></span><span><b><a href="https://wa.me/4917658840571">WhatsApp schreiben</a></b><small>0176 5884 0571</small></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><b><a href="mailto:info@foerdernest.de">info@foerdernest.de</a></b><small>Antwort meist am selben Tag</small></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span><b>Büro München</b><small>Lindwurmstr. 10, 80337 München</small></span></li>
+      </ul>
+      <a class="btn btn-green" href="#" data-placeholder="calendly" style="margin-top:8px">Termin online buchen</a>
+    </div>
+
+    <div class="form reveal">
+      <div class="ok" id="ok">Danke, deine Nachricht ist unterwegs. Ich melde mich zeitnah bei dir.</div>
+      <form id="cform" novalidate>
+        <div class="row">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name"></div>
+          <div class="field"><label for="tel">Telefon</label><input id="tel" name="tel" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="mail">E-Mail</label><input id="mail" name="mail" type="email" autocomplete="email"></div>
+        <div class="row">
+          <div class="field"><label for="topic">Worum geht es?</label>
+            <select id="topic" name="topic">
+              <option>Förderungen und Elterngeld</option>
+              <option>Versicherungen und Absicherung</option>
+              <option>Vermögensaufbau</option>
+              <option>Etwas anderes</option>
+            </select>
+          </div>
+          <div class="field"><label for="pref">So erreichst du mich am liebsten</label>
+            <select id="pref" name="pref"><option>Telefon</option><option>WhatsApp</option><option>E-Mail</option></select>
+          </div>
+        </div>
+        <div class="field"><label for="msg">Deine Nachricht</label><textarea id="msg" name="msg" placeholder="Erzähl mir kurz, wie ich dir helfen kann."></textarea></div>
+        <label class="consent"><input type="checkbox" id="ok2"> Ich bin mit der Verarbeitung meiner Angaben laut Datenschutz einverstanden.</label>
+        <button class="btn btn-gold" type="submit">Nachricht senden</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="word">Förder<span>nest</span></div>
+        <p class="desc">Förderungen &middot; Vorsorge &middot; Zukunft</p>
+        <p class="slogan">Wir begleiten Familien. Für heute, für morgen, für eure Zukunft.</p>
+        <a class="iglink" href="#" data-placeholder="instagram"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.3" fill="#fff" stroke="none"/></svg></span>Fördernest auf Instagram</a>
+      </div>
+      <div>
+        <h4>Seiten</h4>
+        <ul><li><a href="#start">Start</a></li><li><a href="#ueber">Über mich</a></li><li><a href="#leistungen">Leistungen</a></li><li><a href="#kontakt">Kontakt</a></li></ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul><li><a href="tel:+4915567450097">0155 6745 0097</a></li><li><a href="https://wa.me/4917658840571">WhatsApp</a></li><li><a href="mailto:info@foerdernest.de">info@foerdernest.de</a></li><li>Lindwurmstr. 10, München</li></ul>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <ul><li><a href="#" data-placeholder="impressum">Impressum</a></li><li><a href="#" data-placeholder="datenschutz">Datenschutz</a></li></ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>&copy; 2026 Fördernest &middot; Jakob Weinzierl</span>
+      <span>Gestaltet von RITT HAPPENS</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// header shadow on scroll
+const hdr=document.querySelector('.hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>8));
+// mobile nav
+const burger=document.getElementById('burger'), nav=document.getElementById('nav');
+burger.addEventListener('click',()=>{const o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger.setAttribute('aria-expanded',false)}));
+// faq
+document.querySelectorAll('.q button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const q=b.parentElement, ans=q.querySelector('.ans'), open=q.classList.toggle('open');
+    b.setAttribute('aria-expanded',open);
+    ans.style.maxHeight=open?ans.scrollHeight+'px':0;
+  });
+});
+// reveal on scroll
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// duplicate marquee for seamless loop
+const track=document.getElementById('track'); track.innerHTML+=track.innerHTML;
+// placeholder links
+document.querySelectorAll('[data-placeholder]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();}));
+// form prototype
+document.getElementById('cform').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').style.display='block';e.target.reset();document.getElementById('ok').scrollIntoView({behavior:'smooth',block:'center'});});
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FinancialService",
+  "name":"Fördernest",
+  "description":"Förderung und Finanzberatung für Familien: Elterngeld, Zuschüsse, Absicherung und Vermögensaufbau.",
+  "areaServed":"DE",
+  "telephone":"+4915567450097",
+  "email":"info@foerdernest.de",
+  "founder":{"@type":"Person","name":"Jakob Weinzierl","jobTitle":"Familienberater"},
+  "address":{"@type":"PostalAddress","streetAddress":"Lindwurmstr. 10","postalCode":"80337","addressLocality":"München","addressCountry":"DE"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Was kostet ein Erstgespräch?","acceptedAnswer":{"@type":"Answer","text":"Dein Erstgespräch ist immer kostenlos und unverbindlich. Wir schauen gemeinsam, wo ihr steht und wie ich euch helfen kann."}},
+    {"@type":"Question","name":"Für wen ist die Beratung gedacht?","acceptedAnswer":{"@type":"Answer","text":"Für Familien, werdende Eltern und alle, die für ihre Familie das Beste herausholen möchten, ob Förderungen, Absicherung oder Vermögensaufbau."}},
+    {"@type":"Question","name":"Geht die Beratung auch online?","acceptedAnswer":{"@type":"Answer","text":"Ja. Ich berate dich deutschlandweit per Video. Wer lieber persönlich kommt, ist im Büro in München willkommen."}},
+    {"@type":"Question","name":"Welche Förderungen kann ich bekommen?","acceptedAnswer":{"@type":"Answer","text":"Häufig geht es um Elterngeld, Kindergeld und verschiedene Zuschüsse. Im Gespräch prüfe ich, was für euch konkret möglich ist."}},
+    {"@type":"Question","name":"Wie schnell bekomme ich einen Termin?","acceptedAnswer":{"@type":"Answer","text":"In der Regel findet dein Erstgespräch innerhalb von 48 Stunden statt, von Montag bis Freitag."}},
+    {"@type":"Question","name":"Arbeitest du mit festen Partnern?","acceptedAnswer":{"@type":"Answer","text":"Ich arbeite mit vielen starken Partnergesellschaften zusammen und suche daraus die Lösung, die zu eurer Familie passt."}}
+  ]
+}
+</script>
+</body>
+</html>
