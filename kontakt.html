@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt · Fördernest</title>
+<meta name="description" content="Kontakt zu Fördernest. Kostenloses und unverbindliches Erstgespräch für Familien, per Telefon, WhatsApp, E-Mail oder Formular. Büro in München, Beratung deutschlandweit online.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#33454e; --ink-soft:#5d6f72;
+  --green:#8ea072; --green-deep:#6d8151;
+  --gold:#dda53c; --gold-deep:#c1841c;
+  --tan:#c8a96d; --tan-soft:#e6d6b6;
+  --cream:#faf6ee; --cream2:#f3ecdd; --paper:#ffffff;
+  --line:rgba(51,69,78,.12);
+  --shadow:0 18px 50px -24px rgba(51,69,78,.45);
+  --maxw:1160px;
+  --r:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:"Nunito Sans",system-ui,sans-serif; font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Fredoka",system-ui,sans-serif; font-weight:600; line-height:1.08; margin:0; letter-spacing:-.01em;}
+p{margin:0 0 1em}
+a{color:inherit}
+img{max-width:100%; display:block}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+.sect{padding:96px 0}
+.eyebrow{
+  font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--green-deep); margin:0 0 16px;
+}
+.lead{font-size:19px; color:var(--ink-soft); max-width:56ch}
+
+/* buttons */
+.btn{display:inline-flex; align-items:center; gap:10px; font-family:"Fredoka",sans-serif; font-weight:500;
+  font-size:16px; padding:14px 24px; border-radius:100px; border:0; cursor:pointer; text-decoration:none;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;}
+.btn-gold{background:var(--gold); color:#3a2c08; box-shadow:0 10px 24px -10px rgba(221,165,60,.9)}
+.btn-gold:hover{transform:translateY(-2px); background:var(--gold-deep); color:#fff}
+.btn-ghost{background:transparent; color:var(--ink); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--green); color:var(--green-deep); transform:translateY(-2px)}
+.btn-green{background:var(--green-deep); color:#fff}
+.btn-green:hover{transform:translateY(-2px); background:#5c6e44}
+
+/* header */
+.hdr{position:sticky; top:0; z-index:60; background:rgba(250,246,238,.82);
+  backdrop-filter:blur(10px); border-bottom:1px solid transparent; transition:border-color .3s, box-shadow .3s}
+.hdr.scrolled{border-color:var(--line); box-shadow:0 10px 30px -26px rgba(51,69,78,.6)}
+.hdr .wrap{display:flex; align-items:center; justify-content:space-between; height:118px; padding-top:8px; padding-bottom:8px}
+.brand img{height:96px; width:auto; display:block}
+.nav{display:flex; align-items:center; gap:34px}
+.nav a.link{font-weight:700; font-size:15.5px; text-decoration:none; color:var(--ink); position:relative}
+.nav a.link::after{content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0; background:var(--gold); transition:width .22s ease}
+.nav a.link:hover::after{width:100%}
+.burger{display:none; background:none; border:0; cursor:pointer; padding:8px}
+.burger span{display:block; width:24px; height:2px; background:var(--ink); margin:5px 0; transition:.25s}
+
+/* hero */
+.hero{position:relative; overflow:hidden}
+.hero .wrap{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; padding-top:72px; padding-bottom:40px}
+.hero-copy h1{font-size:clamp(38px,5vw,60px); color:var(--ink)}
+.hero-copy h1 .accent{color:var(--green-deep)}
+.hero-copy .lead{margin:22px 0 30px}
+.hero-cta{display:flex; align-items:center; gap:20px; flex-wrap:wrap}
+.call{display:inline-flex; align-items:center; gap:10px; font-weight:700; text-decoration:none; color:var(--ink)}
+.call small{display:block; font-weight:600; color:var(--ink-soft); font-size:13px; line-height:1.2}
+.call .ic{width:42px;height:42px;border-radius:50%;background:var(--cream2);display:grid;place-items:center;flex:none}
+.hero-media{position:relative}
+.hero-media .photo{position:relative; z-index:2; border-radius:52% 52% 46% 46%/44% 44% 52% 52%;
+  overflow:hidden; box-shadow:var(--shadow); border:6px solid #fff; aspect-ratio:4/3.2; object-fit:cover; width:100%; height:100%}
+.hero-media .photo img{width:100%; height:100%; object-fit:cover}
+.nest-strands{position:absolute; z-index:1; left:-6%; right:-6%; bottom:-9%; width:112%; height:auto; opacity:.9}
+.blob{position:absolute; z-index:0; width:340px; height:340px; right:-90px; top:-70px;
+  background:radial-gradient(circle at 40% 40%, rgba(142,160,114,.35), rgba(142,160,114,0) 70%); filter:blur(4px)}
+.usp{background:var(--cream); padding:6px 0 42px; position:relative; z-index:5}
+.usp .wrap{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:stretch}
+.usp .card{background:#fff; border:1px solid var(--line); border-radius:20px; padding:22px 24px; height:100%;
+  display:flex; gap:16px; align-items:center; box-shadow:0 16px 44px -32px rgba(51,69,78,.7)}
+.usp .badge{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;flex:none;
+  background:var(--cream2); color:var(--green-deep)}
+.usp .card:nth-child(2) .badge{color:var(--gold-deep)}
+.usp .card:nth-child(3) .badge{color:var(--tan)}
+.usp b{font-family:"Fredoka",sans-serif; font-weight:500; font-size:17.5px; display:block; margin-bottom:5px; color:var(--ink); line-height:1.15}
+.usp p{margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.5}
+
+/* empathy */
+.empathy{background:linear-gradient(180deg,var(--cream) 0%, #fff 100%)}
+.empathy .wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center}
+.empathy h2{font-size:clamp(28px,3.4vw,40px); max-width:14ch}
+.quote{margin-top:26px; padding:24px 28px; background:var(--cream2); border-radius:18px; border-left:4px solid var(--gold)}
+.quote-text{font-family:"Fredoka",sans-serif; font-size:20px; color:var(--ink); margin:0 0 10px; line-height:1.28}
+.quote-more{font-size:15.5px; color:var(--ink-soft); margin:0 0 12px; line-height:1.55}
+.quote-by{font-family:"Fredoka",sans-serif; font-size:13.5px; color:var(--green-deep); font-weight:500}
+
+/* leistungen */
+.leistungen{background:#fff}
+.head-row{display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin-bottom:52px; flex-wrap:wrap}
+.head-row h2{font-size:clamp(30px,3.6vw,44px); max-width:16ch}
+.pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:26px}
+.pillar{background:var(--cream); border-radius:var(--r); padding:34px 30px 30px; position:relative;
+  border:1px solid var(--line); transition:transform .2s ease, box-shadow .2s ease}
+.pillar:hover{transform:translateY(-4px); box-shadow:var(--shadow)}
+.pillar::before{content:""; position:absolute; top:0; left:30px; right:30px; height:3px; border-radius:3px; background:var(--tan)}
+.pillar:nth-child(2)::before{background:var(--green)}
+.pillar:nth-child(3)::before{background:var(--gold)}
+.pillar .motif{width:52px; height:52px; margin-bottom:18px}
+.pillar h3{font-size:23px; margin-bottom:10px}
+.pillar p{font-size:15.5px; color:var(--ink-soft); margin-bottom:18px}
+.morelink{font-family:"Fredoka",sans-serif; font-weight:500; text-decoration:none; color:var(--green-deep);
+  display:inline-flex; align-items:center; gap:7px}
+.morelink svg{transition:transform .18s}
+.morelink:hover svg{transform:translateX(4px)}
+
+/* process */
+.process{background:var(--ink); color:#eef1ec; position:relative}
+.process .eyebrow{color:var(--tan-soft)}
+.process h2{font-size:clamp(28px,3.4vw,40px); color:#fff; margin-bottom:54px; max-width:18ch}
+.steps{display:grid; grid-template-columns:repeat(5,1fr); gap:22px; position:relative}
+.steps::before{content:""; position:absolute; top:22px; left:6%; right:6%; height:2px;
+  background:repeating-linear-gradient(90deg,var(--tan) 0 8px, transparent 8px 16px); opacity:.6}
+.step{position:relative}
+.step .num{width:46px; height:46px; border-radius:50%; background:var(--gold); color:#3a2c08;
+  font-family:"Fredoka",sans-serif; font-weight:600; display:grid; place-items:center; font-size:18px; position:relative; z-index:2}
+.step h3{font-size:17.5px; color:#fff; margin:18px 0 8px}
+.step p{font-size:14px; color:#c4ccc4; margin:0}
+
+/* about */
+.about{background:var(--cream)}
+.about .wrap{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center}
+.about-media{position:relative}
+.about-media img{border-radius:26px; box-shadow:var(--shadow); border:6px solid #fff; aspect-ratio:3/3.4; object-fit:cover; width:100%}
+.about h2{font-size:clamp(28px,3.4vw,40px); max-width:16ch; margin-bottom:20px}
+.creds{list-style:none; padding:0; margin:28px 0 0; display:grid; gap:14px}
+.creds li{display:flex; gap:12px; align-items:flex-start}
+.creds .ck{width:28px;height:28px;border-radius:9px;background:var(--cream2);color:var(--green-deep);display:grid;place-items:center;flex:none}
+.creds li span:last-child{font-size:15.5px; color:var(--ink); font-weight:600; line-height:1.4}
+
+.fragen-illu{margin-top:30px; max-width:460px}
+.fragen-illu img{width:100%; height:auto; display:block; border-radius:22px; border:1px solid var(--line); box-shadow:0 16px 44px -30px rgba(51,69,78,.55)}
+
+.ig-glyph{display:inline-block; width:19px; height:19px; background:currentColor; vertical-align:-3px;
+  -webkit-mask:url(assets/instagram.svg) center/contain no-repeat; mask:url(assets/instagram.svg) center/contain no-repeat}
+
+/* standort */
+.standort{background:#fff}
+.standort .wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center}
+.standort h2{font-size:clamp(28px,3.4vw,40px); max-width:15ch; margin-bottom:18px}
+.standort .tags{display:flex; gap:12px; flex-wrap:wrap; margin-top:22px}
+.standort .tag{display:inline-flex; align-items:center; gap:9px; background:var(--cream2); border-radius:100px;
+  padding:10px 18px; font-weight:700; font-size:14.5px; color:var(--ink)}
+.standort .tag svg{color:var(--green-deep)}
+.standort-media img{width:100%; height:auto; display:block; border-radius:26px; border:1px solid var(--line); box-shadow:0 16px 44px -30px rgba(51,69,78,.55)}
+
+/* partners */
+.partners{background:#fff; padding:50px 0; text-align:center; overflow:hidden}
+.partners .eyebrow{color:var(--green-deep)}
+.partners .sub{color:var(--ink-soft); max-width:48ch; margin:0 auto 28px}
+.marquee{position:relative; overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.marquee-track{display:flex; width:max-content; animation:fnscroll 55s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-group{display:flex; align-items:center; gap:48px; padding-right:48px}
+.marquee-group img{height:30px; width:auto; object-fit:contain; filter:grayscale(1); opacity:.55;
+  transition:filter .25s ease, opacity .25s ease}
+.marquee-group img:hover{filter:grayscale(0); opacity:1}
+@keyframes fnscroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+/* faq */
+.faq{background:var(--cream2)}
+.faq .wrap{max-width:820px}
+.faq h2{font-size:clamp(28px,3.4vw,40px); text-align:center; margin-bottom:44px}
+.q{background:#fff; border:1px solid var(--line); border-radius:16px; margin-bottom:14px; overflow:hidden}
+.q button{width:100%; text-align:left; background:none; border:0; cursor:pointer; padding:22px 24px;
+  font-family:"Fredoka",sans-serif; font-weight:500; font-size:18px; color:var(--ink);
+  display:flex; justify-content:space-between; align-items:center; gap:16px}
+.q .chev{flex:none; transition:transform .25s; color:var(--green-deep)}
+.q.open .chev{transform:rotate(180deg)}
+.q .ans{max-height:0; overflow:hidden; transition:max-height .3s ease}
+.q .ans p{padding:0 24px 22px; margin:0; color:var(--ink-soft); font-size:16px}
+
+/* insta */
+.insta{background:#fff}
+.insta .card{background:linear-gradient(120deg,var(--green-deep),#7d9159); color:#fff; border-radius:28px;
+  padding:44px 48px; display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap}
+.insta h2{color:#fff; font-size:28px; margin-bottom:8px}
+.insta p{color:rgba(255,255,255,.9); margin:0; max-width:44ch}
+.insta .btn-gold{background:#fff; color:var(--green-deep)}
+.insta .btn-gold:hover{background:var(--gold); color:#3a2c08}
+
+/* contact */
+.contact{background:var(--cream)}
+.contact .wrap{display:grid; grid-template-columns:.85fr 1.15fr; gap:56px}
+.contact h2{font-size:clamp(30px,3.6vw,44px); margin-bottom:16px}
+.reach{list-style:none; padding:0; margin:26px 0 0}
+.reach li{display:flex; gap:14px; align-items:flex-start; margin-bottom:18px}
+.reach .ic{width:42px;height:42px;border-radius:12px;background:#fff;border:1px solid var(--line);
+  display:grid;place-items:center;flex:none;color:var(--green-deep)}
+.reach b{display:block; font-family:"Fredoka",sans-serif; font-weight:500}
+.reach a{text-decoration:none; color:var(--ink)}
+.reach small{color:var(--ink-soft)}
+.map{margin-top:24px; height:150px; border-radius:16px; border:1px dashed var(--tan);
+  background:var(--cream2); display:grid; place-items:center; text-align:center; color:var(--ink-soft); font-size:14px; padding:14px}
+.form{background:#fff; border:1px solid var(--line); border-radius:24px; padding:34px; box-shadow:var(--shadow)}
+.form .row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.field{margin-bottom:16px}
+.field label{display:block; font-size:13.5px; font-weight:700; color:var(--ink); margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%; padding:13px 15px; border:1px solid var(--line);
+  border-radius:12px; font:inherit; font-size:15.5px; background:var(--cream); color:var(--ink)}
+.field textarea{resize:vertical; min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--green); outline-offset:1px; background:#fff}
+.consent{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--ink-soft); margin:4px 0 20px}
+.consent input{margin-top:3px}
+.form .ok{display:none; background:#eef3e6; border:1px solid var(--green); color:var(--green-deep);
+  padding:14px 18px; border-radius:12px; font-weight:700; margin-bottom:16px}
+
+/* footer */
+.foot{background:var(--ink); color:#c9d1cb; padding:64px 0 30px}
+.foot .top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:36px}
+.foot-logo{background:var(--cream); border-radius:16px; padding:12px 18px; display:inline-block}
+.foot-logo img{height:72px; width:auto; display:block}
+.foot .desc{letter-spacing:.14em; text-transform:uppercase; font-size:11px; color:var(--tan-soft); margin:14px 0 16px}
+.foot .slogan{font-family:"Fredoka",sans-serif; font-size:18px; color:#eef1ec; max-width:30ch}
+.foot h4{font-family:"Fredoka",sans-serif; font-weight:500; color:#fff; font-size:15px; margin:0 0 14px; letter-spacing:.02em}
+.foot ul{list-style:none; padding:0; margin:0}
+.foot li{margin-bottom:9px; font-size:14.5px}
+.foot a{color:#c9d1cb; text-decoration:none; font-size:14.5px}
+.foot a:hover{color:#fff}
+.iglink{display:inline-flex; align-items:center; gap:9px; margin-top:18px; color:#fff; text-decoration:none; font-weight:700; font-size:14.5px}
+.iglink .ic{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.1);display:grid;place-items:center}
+.foot .bottom{border-top:1px solid rgba(255,255,255,.12); margin-top:44px; padding-top:22px;
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:#9aa69f}
+
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1; transform:none}
+
+@media (max-width:920px){
+  .hero .wrap,.empathy .wrap,.about .wrap,.standort .wrap,.contact .wrap{grid-template-columns:1fr; gap:40px}
+  .hero-media{order:-1; max-width:460px}
+  .pillars{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr; gap:8px}
+  .steps::before{display:none}
+  .step{display:grid; grid-template-columns:46px 1fr; gap:16px; align-items:start; padding:8px 0}
+  .step h3{margin-top:0}
+  .foot .top{grid-template-columns:1fr 1fr}
+  .form .row{grid-template-columns:1fr}
+}
+@media (max-width:680px){
+  .sect{padding:70px 0}
+  .hdr .wrap{height:82px}
+  .brand img{height:58px}
+  .nav{position:fixed; inset:82px 0 auto 0; background:var(--cream); flex-direction:column; gap:0;
+    padding:14px 24px 26px; box-shadow:var(--shadow); transform:translateY(-140%); transition:transform .3s; align-items:stretch}
+  .nav.open{transform:none}
+  .nav a.link{padding:14px 0; border-bottom:1px solid var(--line)}
+  .nav .btn{margin-top:14px; justify-content:center}
+  .burger{display:block}
+  .foot .top{grid-template-columns:1fr}
+  .insta .card{padding:32px 26px}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal{transition:none; opacity:1; transform:none}
+  html{scroll-behavior:auto}
+  .marquee-track{animation:none; flex-wrap:wrap; justify-content:center; width:auto}
+  .marquee-group{flex-wrap:wrap; justify-content:center; gap:30px 52px; padding:0}
+  .marquee-group:nth-child(2){display:none}
+}
+
+/* leistungen page */
+.nav a.link.active{color:var(--green-deep)}
+.nav a.link.active::after{width:100%}
+.lp-intro{padding:64px 0 26px; background:var(--cream)}
+.lp-intro h1{font-size:clamp(34px,4.4vw,52px); max-width:17ch; margin:12px 0 18px}
+.lp-anchors{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px}
+.lp-anchors a{background:#fff; border:1px solid var(--line); border-radius:100px; padding:10px 18px; text-decoration:none; font-weight:700; font-size:14.5px; color:var(--ink); transition:transform .18s ease, border-color .18s ease, color .18s ease}
+.lp-anchors a:hover{border-color:var(--green); color:var(--green-deep); transform:translateY(-2px)}
+.lp-detail{background:#fff}
+.lp-detail.alt{background:var(--cream)}
+.lp-row{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center}
+.lp-detail.rev .lp-media{grid-column:2}
+.lp-detail.rev .lp-text{grid-column:1; grid-row:1}
+.lp-kicker{display:inline-flex; align-items:center; gap:11px; font-family:"Fredoka",sans-serif; font-weight:500; color:var(--green-deep); margin-bottom:12px}
+.lp-kicker .ic{width:44px;height:44px;border-radius:13px;background:var(--cream2);display:grid;place-items:center}
+.lp-detail.alt .lp-kicker .ic{background:#fff}
+.lp-text h2{font-size:clamp(26px,3vw,38px); margin-bottom:14px}
+.lp-text .lead{margin-bottom:6px}
+.checks{list-style:none; padding:0; margin:22px 0 28px; display:grid; gap:12px}
+.checks li{display:flex; gap:12px; align-items:flex-start; font-size:15.5px; color:var(--ink)}
+.checks .ck{width:24px;height:24px;border-radius:7px;background:var(--cream2);color:var(--green-deep);display:grid;place-items:center;flex:none;margin-top:2px}
+.lp-detail.alt .checks .ck{background:#fff}
+.lp-ph{position:relative; border-radius:26px; border:1px solid var(--line); background:linear-gradient(160deg,var(--cream2),#fff); aspect-ratio:4/3.3; display:grid; place-items:center; text-align:center; padding:24px; box-shadow:var(--shadow); overflow:hidden}
+.lp-ph::before{content:""; position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(142,160,114,.18),transparent 70%); right:-40px; top:-40px}
+.lp-ph .bigicon{width:76px;height:76px;margin:0 auto 16px; position:relative}
+.lp-ph small{color:var(--ink-soft); font-weight:700; letter-spacing:.03em; text-transform:uppercase; font-size:12px; position:relative}
+.lp-media img{width:100%; height:auto; border-radius:26px; border:1px solid var(--line); box-shadow:var(--shadow); display:block}
+.lp-cta{background:var(--cream)}
+.lp-cta-card{background:var(--ink); color:#fff; border-radius:28px; padding:54px 48px; text-align:center}
+.lp-cta-card h2{color:#fff; font-size:clamp(26px,3vw,38px); margin-bottom:12px; max-width:20ch; margin-left:auto; margin-right:auto}
+.lp-cta-card p{color:#c4ccc4; max-width:54ch; margin:0 auto 26px}
+@media (max-width:920px){
+  .lp-row{grid-template-columns:1fr; gap:32px}
+  .lp-detail.rev .lp-media{grid-column:auto}
+  .lp-detail.rev .lp-text{grid-column:auto; grid-row:auto}
+  .lp-media{order:-1}
+  .lp-cta-card{padding:38px 26px}
+}
+
+
+/* kontakt page */
+.contact h1{font-size:clamp(30px,3.6vw,44px); margin-bottom:16px}
+.kontakt-map{height:360px; border-radius:26px; border:1px solid var(--line); overflow:hidden; box-shadow:var(--shadow); margin-top:46px}
+.kontakt-map iframe{width:100%; height:100%; border:0; display:block; filter:saturate(.9)}
+
+</style>
+</head>
+<body>
+<header class="hdr" id="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Fördernest Startseite"><img src="assets/logo.png" alt="Fördernest"></a>
+    <nav class="nav" id="nav">
+      <a class="link" href="ueber-mich.html">Über mich</a>
+      <a class="link" href="leistungen.html">Leistungen</a>
+      <a class="link active" href="kontakt.html" aria-current="page">Kontakt</a>
+      <a class="btn btn-gold" href="#anfrage">Kostenloses Erstgespräch</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<section class="sect contact" id="anfrage">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Kontakt</p>
+      <h1>Lass uns reden.</h1>
+      <p class="lead">Erzählt uns kurz, worum es geht. Euer Erstgespräch ist kostenlos und unverbindlich.</p>
+      <ul class="reach">
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg></span><span><b><a href="tel:+4915567450097">0155 6745 0097</a></b><small>Ruft einfach an</small></span></li>
+        <li><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.5 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3.1.3.1.6-.1 1.2Z"/></svg></span><span><b><a href="https://wa.me/4915567450097">WhatsApp schreiben</a></b><small>0155 6745 0097</small></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><b><a href="mailto:info@foerdernest.de">info@foerdernest.de</a></b><small>Antwort meist am selben Tag</small></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span><b>Büro München</b><small>Lindwurmstr. 10, 80337 München</small></span></li>
+      </ul>
+      <a class="btn btn-green" href="#" data-placeholder="calendly" style="margin-top:8px">Termin online buchen</a>
+    </div>
+
+    <div class="form reveal">
+      <div class="ok" id="ok">Danke, eure Nachricht ist unterwegs. Wir melden uns zeitnah bei euch.</div>
+      <form id="cform" novalidate>
+        <div class="row">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name"></div>
+          <div class="field"><label for="tel">Telefon</label><input id="tel" name="tel" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="mail">E-Mail</label><input id="mail" name="mail" type="email" autocomplete="email"></div>
+        <div class="row">
+          <div class="field"><label for="topic">Worum geht es?</label>
+            <select id="topic" name="topic">
+              <option>Förderungen und Elterngeld</option>
+              <option>Vorsorge &amp; Versicherungen</option>
+              <option>Vermögensaufbau</option>
+              <option>Etwas anderes</option>
+            </select>
+          </div>
+          <div class="field"><label for="pref">Wie erreichen wir euch am besten?</label>
+            <select id="pref" name="pref"><option>Telefon</option><option>WhatsApp</option><option>E-Mail</option></select>
+          </div>
+        </div>
+        <div class="field"><label for="msg">Eure Nachricht</label><textarea id="msg" name="msg" placeholder="Erzählt uns kurz, wie wir euch helfen können."></textarea></div>
+        <label class="consent"><input type="checkbox" id="ok2"> Ich bin mit der Verarbeitung meiner Angaben laut Datenschutz einverstanden.</label>
+        <button class="btn btn-gold" type="submit">Nachricht senden</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="kontakt-map">
+      <iframe title="Karte Büro München" src="https://www.google.com/maps?q=Lindwurmstr.+10,+80337+M%C3%BCnchen&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+<footer class="foot">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="foot-logo"><img src="assets/logo.png" alt="Fördernest"></div>
+        <p class="desc">Förderungen &middot; Vorsorge &middot; Zukunft</p>
+        <p class="slogan">Wir begleiten Familien. Für heute, für morgen, für eure Zukunft.</p>
+        <a class="iglink" href="https://www.instagram.com/foerdernest/" target="_blank" rel="noopener"><span class="ig-glyph"></span>Fördernest auf Instagram</a>
+      </div>
+      <div>
+        <h4>Seiten</h4>
+        <ul><li><a href="index.html">Start</a></li><li><a href="ueber-mich.html">Über mich</a></li><li><a href="leistungen.html">Leistungen</a></li><li><a href="kontakt.html">Kontakt</a></li></ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul><li><a href="tel:+4915567450097">0155 6745 0097</a></li><li><a href="https://wa.me/4915567450097">WhatsApp</a></li><li><a href="mailto:info@foerdernest.de">info@foerdernest.de</a></li><li><a href="https://www.google.com/maps?q=Lindwurmstr.+10,+80337+M%C3%BCnchen" target="_blank" rel="noopener">Lindwurmstr. 10, München</a></li></ul>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <ul><li><a href="#" data-placeholder="impressum">Impressum</a></li><li><a href="#" data-placeholder="datenschutz">Datenschutz</a></li></ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>&copy; 2026 Fördernest &middot; Jakob Weinzierl</span>
+      <span>Gestaltet von RITT HAPPENS</span>
+    </div>
+  </div>
+</footer>
+<script>
+const hdr=document.querySelector('.hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>8));
+const burger=document.getElementById('burger'), nav=document.getElementById('nav');
+burger.addEventListener('click',()=>{const o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger.setAttribute('aria-expanded',false)}));
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('[data-placeholder]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();}));
+const cf=document.getElementById('cform');
+if(cf) cf.addEventListener('submit',e=>{e.preventDefault();const ok=document.getElementById('ok');ok.style.display='block';cf.reset();ok.scrollIntoView({behavior:'smooth',block:'center'});});
+</script>
+</body>
+</html>
